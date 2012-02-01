@@ -1,0 +1,11 @@
+<h1>Tasks that take <%= "#{params[:free_time]} minutes" %>.</h1>
+
+<%= p @tasks.inspect %>
+
+<% if @tasks == nil %>
+	<p>No tasks for this time category</p>
+<% else %>
+	<%= render 'not_completed' %>
+<% end %>
+
+

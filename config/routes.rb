@@ -4,6 +4,8 @@ TaskQueue::Application.routes.draw do
     get :incomplete, :on => :member
     get :prioritize, :on => :member
     get :deprioritize, :on => :member
+    get :time, :on => :collection
+    post :time, :on => :collection
   end
 
   get "home/index"

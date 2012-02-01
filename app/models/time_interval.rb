@@ -9,12 +9,4 @@ class TimeInterval
     end
   end
 end
-
-# Things that are specific to this one Task should just be attributes
-  # Names
-  # Descriptions
-
-# Things that are re-usable across all tasks in the entire project should have abstractions
-  # Categories
-  # Time Intervals
   

@@ -53,6 +53,11 @@ class TasksController < ApplicationController
     @task.move_down
     redirect_to tasks_path, :notice => "Task has moved down in priority"
   end
+  
+  def time
+    @tasks = Task.organize_by_time(params[:free_time])
+    render :template => 'tasks/time'
+  end
 
 private
   

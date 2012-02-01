@@ -30,4 +30,8 @@ class Task < ActiveRecord::Base
   def self.by_priority
     find(:all, :order => :priority)
   end
+  
+  def self.organize_by_time(time)
+    where(:time => time).by_priority
+  end
 end
