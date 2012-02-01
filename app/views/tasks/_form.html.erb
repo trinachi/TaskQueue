@@ -28,7 +28,12 @@
   
   <div class="field">
     <%= f.label :category_id %><br />
-    <%= collection_select( :task, :category_id, Category.all, :id, :name ) %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priority %><br />
+    <%= f.select(:priority, {"high" => 1, "medium" => 2, "low" => 3}) %>
   </div>
   
   <div class="actions">

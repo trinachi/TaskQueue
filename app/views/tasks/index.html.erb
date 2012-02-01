@@ -1,29 +1,44 @@
-<h1>Listing tasks</h1>
+<h1>Current Tasks</h1>
 
-<table>
-  <tr>
-    <th>Task</th>
-    <th>Time</th>
-    <th>Description</th>
-    <th>Tags</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<ul id="tasks">
 <% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.task %></td>
-    <td><%= task.time %></td>
-    <td><%= task.description %></td>
-    <td><%= task.category.name %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<% if task.completed? %>
+	<% else %>
+	  <li>
+		<%= form_for(:complete, :id => task.id, :url => "#{complete_task_path(task)}", :method => "get") do |f| %>
+			<%= f.submit("complete") %>
+		<% end %>
+
+	   	<h3><%= link_to "#{task.task}", task %></h3>
+	    <p><a href="#"><%= task.time %></a></p>
+		<p><a href="#"><%= task.category %></a></p>
+		<p><%= task.description %></p>
+		<p>Priority: <%= task.priority %></p>
+	    <p><%= link_to 'Edit', edit_task_path(task) %></p>
+		<p><%= link_to 'Move up', prioritize_task_path(task) %>
+		<p><%= link_to 'Move down', deprioritize_task_path(task) %>
+	  </li>
+	<% end %>
 <% end %>
-</table>
+</ul>
 
 <br />
 
-<%= link_to 'New Task', new_task_path %>
+<p id="new-task"><%= link_to 'New Task', new_task_path %></p>
+
+<h1>Completed Tasks:</h1>
+
+<ul id="tasks">
+<% @tasks.each do |task| %>
+	<% if task.completed? %>
+	<li>
+		<%= form_for(:incomplete, :id => task.id, :url => "#{incomplete_task_path(task)}", :method => "get") do |f| %>
+			<%= f.submit("re-open task") %>
+		<% end %>
+		<h3 class="completed">Completed Task: <%= task.task %></h3>
+		<p><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></p>
+	</li>
+	<% else %>
+	<% end %>
+<% end %>
+</ul>

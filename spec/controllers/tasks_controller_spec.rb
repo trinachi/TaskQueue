@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe TasksController do
+  
+  describe "complete" do
+    it "updates the database" do
+      task = Task.complete!
+      # how do I test if the db has a true?
+    end
 
   def valid_attributes
     {}

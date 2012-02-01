@@ -1,5 +1,10 @@
 TaskQueue::Application.routes.draw do
-  resources :tasks
+  resources :tasks do
+    get :complete, :on => :member
+    get :incomplete, :on => :member
+    get :prioritize, :on => :member
+    get :deprioritize, :on => :member
+  end
 
   get "home/index"
 
@@ -28,6 +33,12 @@ TaskQueue::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+  
+  # member route
+  #  "tasks/1/complete"
+  
+  #collection routes
+  # "tasks/complete"
 
   # Sample resource route with sub-resources:
   #   resources :products do

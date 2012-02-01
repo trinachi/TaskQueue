@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
 
-  before_filter :find_task, :only => [:show, :edit, :update, :destroy]
+  before_filter :find_task, :only => [:show, :edit, :update, :destroy, :complete, :incomplete]
   
   def index
-    @tasks = Task.all
+    @tasks = Task.by_priority
   end
 
   def new
@@ -30,6 +30,28 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_url
+  end
+  
+  def complete
+    @task.finish
+    redirect_to tasks_path, :notice => "Task was completed"
+  end
+  
+  def incomplete
+    @task.resume
+    redirect_to tasks_path, :notice => "Task has been re-opened"
+  end
+  
+  def prioritize
+    find_task
+    @task.move_up
+    redirect_to tasks_path, :notice => "Task has moved up in priority"
+  end
+  
+  def deprioritize
+    find_task
+    @task.move_down
+    redirect_to tasks_path, :notice => "Task has moved down in priority"
   end
 
 private
