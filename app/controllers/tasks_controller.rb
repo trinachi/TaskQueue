@@ -3,7 +3,11 @@ class TasksController < ApplicationController
   before_filter :find_task, :only => [:show, :edit, :update, :destroy, :complete, :incomplete]
   
   def index
-    @tasks = Task.by_priority
+    if current_user != nil
+      @tasks = current_user.tasks
+    else
+      redirect_to new_user_session_path
+    end
   end
 
   def new
@@ -12,6 +16,8 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(params[:task])
+    @task.user_id = current_user.id
+    @task.category_id = 1
     if @task.save
       redirect_to @task, :notice => 'Task was successfully created.'
     else
@@ -24,6 +30,14 @@ class TasksController < ApplicationController
       redirect_to @task, :notice => 'Task was successfully updated.'
     else
       render :action => "edit"
+    end
+  end
+  
+  def show
+    if @task.user_id == current_user.id
+      render "show"
+    else
+      render "error"
     end
   end
 
@@ -55,8 +69,17 @@ class TasksController < ApplicationController
   end
   
   def time
-    @tasks = Task.organize_by_time(params[:free_time])
+    @tasks = current_user.tasks.organize_by_time(params[:free_time])
     render :template => 'tasks/time'
+  end
+  
+  def category
+    @tasks = current_user.tasks.organize_by_category(params[:category])
+    render :template => "tasks/category"
+  end
+  
+  def user_tasks
+    get_tasks_for_user(current_user.id)
   end
 
 private

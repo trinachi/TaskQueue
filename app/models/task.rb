@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :category
+  belongs_to :user
   
   def resume
     update_attribute(:completed, false)
@@ -32,6 +33,14 @@ class Task < ActiveRecord::Base
   end
   
   def self.organize_by_time(time)
-    where(:time => time).by_priority
+    where(:time => time)
+  end
+  
+  def self.organize_by_category(category_id)
+    where(:category_id => category_id)
+  end
+  
+  def self.get_tasks_for_user(task)
+    where(:user_id => task).by_priority
   end
 end

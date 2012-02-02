@@ -1,11 +1,11 @@
 <ul id="tasks">
 <% @tasks.each do |task| %>
 	<% if task.completed? %>
-	<li>
+	<li class="completed">
 		<%= form_for(:incomplete, :id => task.id, :url => "#{incomplete_task_path(task)}", :method => "get") do |f| %>
 			<%= f.submit("re-open task") %>
 		<% end %>
-		<h3 class="completed">Completed Task: <%= task.task %></h3>
+		<h3>Completed Task: <%= task.task %></h3>
 		<p><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></p>
 	</li>
 	<% else %>

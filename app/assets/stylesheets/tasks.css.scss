@@ -5,15 +5,17 @@
 li {
 	list-style-type: none;
 	clear: both;
+	padding: 20px 0;
+}
+
+li form {
+	margin: 0;
+	padding: 0;
 }
 
 #tasks p, #tasks h3, #tasks form {
 	float: left;
-	margin-left: 15px;
-}
-
-#tasks form input {
-	margin-top: 20px;
+	margin: 0 0 0 15px;
 }
 
 p#new-task, div.button {

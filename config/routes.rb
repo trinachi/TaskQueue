@@ -1,4 +1,6 @@
 TaskQueue::Application.routes.draw do
+  devise_for :users
+
   resources :tasks do
     get :complete, :on => :member
     get :incomplete, :on => :member
@@ -6,7 +8,17 @@ TaskQueue::Application.routes.draw do
     get :deprioritize, :on => :member
     get :time, :on => :collection
     post :time, :on => :collection
+    get :category, :on => :collection
+    post :category, :on => :collection
   end
+  
+  # resource :signin
+  
+  devise_scope :user do
+    get "signin", :to => "devise/sessions#new"
+    get "sign_out", :to => "devise/sessions#new"
+  end
+  
 
   get "home/index"
 

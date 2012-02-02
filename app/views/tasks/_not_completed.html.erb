@@ -1,22 +1,22 @@
 <ul id="tasks">
 <% @tasks.each do |task| %>
-	<% if task.completed? %>
-	<% else %>
+	<% if !task.completed? %>
 	  <li>
 		<%= form_tag(complete_task_path(task), :method => "get") do %>
 			<%= submit_tag("complete") %>
 		<% end %>
 
 	   	<h3><%= link_to "#{task.task}", task %></h3>
-	    <p><a href="#"><%= task.time %></a></p>
-		<p><a href="#"><%= task.category.name %></a></p>
+	    <p><%= task.time %> min</p>
+		<p>Category: <%= task.category.name %></p>
 		<p><%= task.description %></p>
 		<p>Priority: <%= task.priority %></p>
+		<p>User id: <%= task.user_id %></p>
 	    <p><%= link_to 'Edit', edit_task_path(task) %></p>
-		<p><%= link_to 'Move up', prioritize_task_path(task) %>
-		<p><%= link_to 'Move down', deprioritize_task_path(task) %>
+		<p><%= link_to 'Move up', prioritize_task_path(task) %></p>
+		<p><%= link_to 'Move down', deprioritize_task_path(task) %></p>
 	  </li>
-
+	<% else %>
 	<% end %>
 <% end %>
 	</ul>
