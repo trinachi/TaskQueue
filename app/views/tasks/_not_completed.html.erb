@@ -1,24 +1,25 @@
 <ul id="tasks">
 <% @tasks.each do |task| %>
-	<% if !task.completed? %>
-	  <li>
-		<%= form_tag(complete_task_path(task), :method => "get") do %>
-			<%= submit_tag("complete") %>
-		<% end %>
+<% if !task.completed? %>
+  <li>
+	<%= link_to '', complete_task_path(task), :class  => "checkbox" %>
 
-	   	<h3><a href="#"><%= "#{task.task}" %></a></h3>
-	    <p><%= task.time %> min</p>
-		<p>Category: <%= task.category.name %></p>
-		<p>Priority: <%= task.priority %></p>
-		<p>User id: <%= task.user_id %></p>
-		<p><%= link_to 'Move up', prioritize_task_path(task) %></p>
-		<p><%= link_to 'Move down', deprioritize_task_path(task) %></p>
-		<div class="more_info">
-			<p><%= task.description %></p>
-			<p><%= link_to 'Edit', edit_task_path(task) %></p>
+   	<h2><a href="#"><%= "#{task.task}" %></a></h2>
+	<div class="details">
+    	<p class="time"><%= task.time %> min</p>
+		<p class="category"><%= task.category.name %></p>
+		<p><%= link_to image_tag('prioritize.png'), prioritize_task_path(task) %></p>
+		<p><%= link_to image_tag('deprioritize.png'), deprioritize_task_path(task) %></p>
+	</div>
+	<div class="more_info">
+		<p class="description"><%= task.description %></p>
+		<div class="controls">
+			<p class="button"><%= link_to 'edit task', edit_task_path(task) %></p>
+			<p class="button"><%= link_to 'delete', task_path(task), :confirm => 'Are you sure?', :method => :delete %></p>
 		</div>
-	  </li>
-	<% else %>
-	<% end %>
+	</div>
+  </li>
+<% else %>
 <% end %>
-	</ul>
+<% end %>
+</ul>

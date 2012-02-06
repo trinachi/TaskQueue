@@ -6,7 +6,7 @@
 
 $(document).ready(function() {
   $("#tasks > li div.more_info").hide();
-  $("#tasks > li h3").toggle(function() {
+  $("#tasks > li h2").toggle(function() {
     $(this).parents("li").find(".more_info").show("fast");
 	}, function(){
 		$(this).parents("li").find(".more_info").hide("fast");

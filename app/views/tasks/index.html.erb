@@ -1,46 +1,44 @@
-<% if signed_in? %>
-	<h1>You are signed in.</h1>
-	<h3><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></h3>
-<% else %>
-	<h1><%= link_to 'Sign in', signin_path %></h1>
-<% end %>
+<header>
+	<div id="header_content">
+		<h1 id="logo">Task Queue</h1>
+		<hgroup>
+		<% if signed_in? %>
+			<h2>You are signed in.</h2>
+			<h3><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></h3>
+		<% else %>
+			<h1><%= link_to 'Sign in', signin_path %></h1>
+		<% end %>
+		<hgroup>
+	</div>
+</header>
 
-<%= form_tag(time_tasks_path) do %>
-  <div class="field">
-    <%= label_tag :free_time %><br />
-	<%= select_tag(:free_time, options_for_select(TimeInterval.form_parameters)) %>
-	<%= submit_tag("View tasks") %>
-  </div>
-<% end %>
+<div id="main">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<section id="filter">
+		<%= form_tag(timecat_tasks_path) do %>
+		  <div class="field">
+			<%= label_tag("Time: ") %>
+			<%= select_tag(:free_time, options_for_select(TimeInterval.form_parameters)) %>
+		    <%= label_tag("Category: ") %>
+			<%= select_tag(:category, options_for_select(Category.names)) %>
+			<%= submit_tag("Go") %>
+		  </div>
+		<% end %>
+		<p id="new_task_button"><%= link_to 'new task', new_task_path %></p>
+	</section>
 
-<%= form_tag(category_tasks_path) do %>
-  <div class="field">
-    <%= label_tag :category %><br />
-	<%= select_tag(:category, options_for_select(Category.names)) %>
-	<%= submit_tag("View category") %>
-  </div>
-<% end %>
-
-<%= form_tag(timecat_tasks_path) do %>
-  <div class="field">
-	<%= label_tag("Time: ") %>
-	<%= select_tag(:free_time, options_for_select(TimeInterval.form_parameters)) %>
-    <%= label_tag("Category: ") %>
-	<%= select_tag(:category, options_for_select(Category.names)) %>
-	<%= submit_tag("Go") %>
-  </div>
-<% end %>
-
-<h1>Current Tasks</h1>
-
-<%= render 'not_completed'%>
-
-<br />
-
-<p id="new-task"><%= link_to 'New Task', new_task_path %></p>
-
-<h1>Completed Tasks:</h1>
-
-<%= render 'completed'%>
+	<section id="all_tasks">
+		<div id="incomplete">
+			<h1>Current Tasks</h1>
+			<%= render 'not_completed'%>
+		</div>
+		
+		<div id="complete">
+			<h1>Completed Tasks</h1>
+			<%= render 'completed'%>
+		</div>
+	</section>
+</div>
 
 

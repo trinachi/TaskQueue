@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   
   def index
     if current_user != nil
-      @tasks = current_user.tasks
+      @tasks = current_user.tasks.by_priority
     else
       redirect_to new_user_session_path
     end
