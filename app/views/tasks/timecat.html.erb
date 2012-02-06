@@ -1,0 +1,7 @@
+<h1><%= "#{Category.find(params[:category]).name}" %> tasks that take <%= "#{params[:free_time]} minutes" %>.</h1>
+
+<% if @tasks.empty? %>
+	<p>No tasks for this category</p>
+<% else %>
+	<%= render 'not_completed' %>
+<% end %>

@@ -19,7 +19,7 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
     @task.category_id = 1
     if @task.save
-      redirect_to @task, :notice => 'Task was successfully created.'
+      redirect_to tasks_path, :notice => 'Task was successfully created.'
     else
       render :action => "new"
     end
@@ -80,6 +80,11 @@ class TasksController < ApplicationController
   
   def user_tasks
     get_tasks_for_user(current_user.id)
+  end
+  
+  def timecat
+    @tasks = current_user.tasks.organize_by_category(params[:category]).organize_by_time(params[:free_time])
+    render :template => "tasks/timecat"
   end
 
 private

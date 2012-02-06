@@ -21,6 +21,16 @@
   </div>
 <% end %>
 
+<%= form_tag(timecat_tasks_path) do %>
+  <div class="field">
+	<%= label_tag("Time: ") %>
+	<%= select_tag(:free_time, options_for_select(TimeInterval.form_parameters)) %>
+    <%= label_tag("Category: ") %>
+	<%= select_tag(:category, options_for_select(Category.names)) %>
+	<%= submit_tag("Go") %>
+  </div>
+<% end %>
+
 <h1>Current Tasks</h1>
 
 <%= render 'not_completed'%>

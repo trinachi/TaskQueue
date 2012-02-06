@@ -10,6 +10,8 @@ TaskQueue::Application.routes.draw do
     post :time, :on => :collection
     get :category, :on => :collection
     post :category, :on => :collection
+    get :timecat, :on => :collection
+    post :timecat, :on => :collection
   end
   
   # resource :signin
