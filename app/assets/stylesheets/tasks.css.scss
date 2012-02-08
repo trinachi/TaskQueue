@@ -1,8 +1,4 @@
-// Place all the styles related to the Tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
-li {
+#tasks li {
 	list-style-type: none;
 	clear: both;
 	padding: 15px 0 10px;
@@ -16,7 +12,6 @@ li {
 
 #tasks p, #tasks h2 {
 	float: left;
-	margin: 0 0 0 15px;
 }
 
 #tasks h2 {
@@ -24,8 +19,8 @@ li {
 	top: 10px;
 }
 
-#tasks h2 a:hover { 
-	color: #4084aa;
+#tasks img {
+	margin-left: 10px;
 }
 
 #tasks .category, #tasks .time {
@@ -53,10 +48,10 @@ p#new-task, div.button {
 }
 
 .completed {
-	color: #ddd;
+	background: #eee;
 }
 
-.more_info {
+.more_info, .more {
 	clear: both;
 	width: 760px;
 	background: #e0eef5;
@@ -64,16 +59,11 @@ p#new-task, div.button {
 	border-top: 1px solid #acc4d1;
 }
 
-#tasks .more_info .description {
-	clear: both;
-	width: 600px;
-	font-size: 1.125em;
+#tasks .description {
+	width: 80%;
+	min-height: 100px;
+	margin-top: 15px;
 	padding: 15px 20px;
-	margin: 15px 0 0 0;
-	border: 2px solid #acc4d1;
-	background: #FFF;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
 }
 
 li .details {
@@ -85,38 +75,71 @@ li .details {
 	display: block;
 	height: 30px;
 	width: 30px;
-	border: 2px solid #acc4d1;
 	float: left; 
 	margin: 0 20px;
-	border-radius: 5px;
-	background: #FFF;
-	-moz-border-radius: 5px;
 }
 
-#tasks .more_info .controls {
+.input {
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #FFF;
+	border: 2px solid #acc4d1;
+}
+
+.button {
+	padding: 7px 0;
+	text-align: center;
+	width: 90px;
+}
+
+#tasks .controls {
 	float: right;
 	position: relative;
 	width: 94px;
 }
 
-#tasks .more_info .controls p, #new_task_button {
-	width: 90px;
+#tasks .controls p {
 	font-size: 1.25em;
 	text-align: center;
-	padding: 7px 0;
-	border: 2px solid #acc4d1;
-	margin: 15px 0 0 0;
-	border-radius: 5px;
-	background: #FFF;
-	-moz-border-radius: 5px;
-}
-
-p#new_task_button {
-	position: relative;
-	float: right;
-	margin-top: 0;
+	margin-top: 15px;
 }
 
 #complete {
 	clear: both;
+	position: relative;
+	top: 30px;
+}
+
+/******* edit task *******/
+
+#edit .controls p input {
+	font-family: Georgia, serif;
+	font-size: 1em;
+}
+
+#edit .title input {
+	height: 30px;
+	margin-top: 0;
+	width: 400px;
+	padding: 0 10px;
+	font-size: 1.25em;
+	font-family: Georgia, serif;
+	line-height: 0;
+}
+
+#edit .description {
+	height: 200px;
+	width: 600px;
+}
+
+#edit textarea {
+	font-family: Georgia, serif;
+}
+
+#complete .button {
+	margin: 0 20px;
+}
+
+#complete .delete {
+	float: right;
 }

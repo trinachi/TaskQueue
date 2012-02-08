@@ -1,0 +1,13 @@
+<header>
+	<div id="header_content">
+		<h1 id="logo">Task Queue</h1>
+		<hgroup>
+		<% if signed_in? %>
+			<h2>You are signed in.</h2>
+			<h3><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></h3>
+		<% else %>
+			<h1><%= link_to 'Sign in', signin_path %></h1>
+		<% end %>
+		<hgroup>
+	</div>
+</header>

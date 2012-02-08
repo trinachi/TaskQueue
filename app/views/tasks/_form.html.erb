@@ -1,3 +1,9 @@
+<div id="main">
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+	<div class="clear"></div>
+	<section id="edit">
+
 <%= form_for(@task) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
@@ -10,33 +16,24 @@
       </ul>
     </div>
   <% end %>
+<ul id="tasks">
+	<li>
+		<p class="checkbox input"><%= link_to '' %></p>
+   		<p class="title"><%= f.text_field :task, :value => "Task Title", :class => "input" %></p>
 
-  <div class="field">
-    <%= f.label :task %><br />
-    <%= f.text_field :task %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :time %><br />
-	  <%= f.select(:time, options_for_select(TimeInterval.form_parameters)) %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :category_id %><br />
-    <%= f.collection_select(:category_id, Category.all, :id, :name) %>
-  </div>
+		<div class="details">
+			<p class="time"><%= f.select(:time, options_for_select(TimeInterval.form_parameters)) %></p>
+		    <p class="category"><%= f.collection_select(:category_id, Category.all, :id, :name) %></p>
+		</div>
+		<div class="more">
+		    <p><%= f.text_area :description, :value => "Task Description", :class => "description input" %></p>
+			<div class="controls">
+				<p><%= f.submit "save task", :class => "input button" %></p>
+			</div>
+		</div>
+		<% end %>
+	</li>
+</ul>
 
-  <div class="field">
-    <%= f.label :priority %><br />
-    <%= f.select(:priority, {"high" => 1, "medium" => 2, "low" => 3}) %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</section>
+</div>

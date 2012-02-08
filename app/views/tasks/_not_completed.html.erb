@@ -1,8 +1,7 @@
-<ul id="tasks">
 <% @tasks.each do |task| %>
 <% if !task.completed? %>
   <li>
-	<%= link_to '', complete_task_path(task), :class  => "checkbox" %>
+	<%= link_to '', complete_task_path(task), :class  => "checkbox input" %>
 
    	<h2><a href="#"><%= "#{task.task}" %></a></h2>
 	<div class="details">
@@ -12,14 +11,13 @@
 		<p><%= link_to image_tag('deprioritize.png'), deprioritize_task_path(task) %></p>
 	</div>
 	<div class="more_info">
-		<p class="description"><%= task.description %></p>
+		<p class="description input"><%= task.description %></p>
 		<div class="controls">
-			<p class="button"><%= link_to 'edit task', edit_task_path(task) %></p>
-			<p class="button"><%= link_to 'delete', task_path(task), :confirm => 'Are you sure?', :method => :delete %></p>
+			<p class="button input"><%= link_to 'edit task', edit_task_path(task) %></p>
+			<p class="button input"><%= link_to 'delete', task_path(task), :confirm => 'Are you sure?', :method => :delete %></p>
 		</div>
 	</div>
   </li>
 <% else %>
 <% end %>
 <% end %>
-</ul>

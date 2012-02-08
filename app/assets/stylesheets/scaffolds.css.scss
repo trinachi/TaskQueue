@@ -34,6 +34,10 @@ h2 {
 	font-weight: normal;
 }
 
+li {
+	list-style-type: none;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;
@@ -46,7 +50,7 @@ a {
   &:visited {
     color: #666; }
   &:hover {
-    color: #000;
+    color: #4084aa;
  } }
 
 img {
@@ -85,7 +89,7 @@ div {
     font-size: 12px;
     list-style: square; } }
 
-/* main page elements */
+/****** header ********/
 
 header {
 	background: rgba(0, 0, 0, 0.2);
@@ -108,18 +112,17 @@ header hgroup {
 }
 
 header h2, header h3 {
+	float: left;
 	font-size: 1.5em;
-	font-weight: normal
+	font-weight: normal;
+	margin-left: 15px;
 }
 
 header a {
 	text-decoration: underline;
 }
 
-header hgroup h2, header hgroup h3 {
-	float: left;
-	margin-left: 15px;
-}
+/***** main page elements ******/
 
 #main {
 	margin: 15px auto;
@@ -147,9 +150,11 @@ header hgroup h2, header hgroup h3 {
 	padding-bottom: 50px;
 }
 
-#complete {
-	position: relative;
-	top: 30px;
-	color: black;
+.clear {
+	clear: both;
+}
+
+#filter .button {
+	float: right;
 }
 
