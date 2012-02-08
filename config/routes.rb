@@ -1,5 +1,8 @@
 TaskQueue::Application.routes.draw do
-  devise_for :users
+  devise_for :users do
+    get "signin", :to => "devise/sessions#new"
+    # get "sign_out", :to => "devise/sessions#new"
+  end
 
   resources :tasks do
     get :complete, :on => :member
@@ -13,14 +16,6 @@ TaskQueue::Application.routes.draw do
     get :timecat, :on => :collection
     post :timecat, :on => :collection
   end
-  
-  # resource :signin
-  
-  devise_scope :user do
-    get "signin", :to => "devise/sessions#new"
-    get "sign_out", :to => "devise/sessions#new"
-  end
-  
 
   get "home/index"
 
